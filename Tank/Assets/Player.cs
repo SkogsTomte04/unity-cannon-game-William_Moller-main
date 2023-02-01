@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth = 5;
+    [SerializeField] private float _maxHealth = 3;
     private float _currentHealth;
 
-    [SerializeField] private Health health;
+    [SerializeField] private Health _healthbar;
     public Transform Gun;
     public GameObject bulletprefab;
     public float rotationspeed;
@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float minrotation;
     public float movspeed;
     public float bulletvel;
+    public float Damage;
     private Vector3 Mov_Input;
 
     public Transform gun;
@@ -27,15 +28,18 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(_healthbar);
         rigidBody = GetComponent<Rigidbody>();
-        health.Updatehealthbar(_maxHealth, _currentHealth);
-        _currentHealth = _maxHealth;
+        
+        _currentHealth = 1;
+
+        _healthbar.UpdateHealth(_maxHealth, _currentHealth);
     }
     Vector3 force(float bulletSpeed)
     {
         return bulletSpeed * barrel.up;
     }
-    // Update is called once per frame
+    
     void Update()
     {
         Mov_Input = new Vector3(Input.GetAxis("Vertical"), 0f);
@@ -92,6 +96,10 @@ public class Player : MonoBehaviour
             barrelRotation -= rotationspeed * Time.deltaTime;
             //Gun.Rotate(-rotationspeed * 0, 0, Time.deltaTime);
         }
+        if(Input.GetKeyDown("l"))
+        {
+            _currentHealth -= 1;
+        }
 
         barrelRotation = Mathf.Clamp(barrelRotation, minrotation, maxrotation);
         Gun.localRotation = Quaternion.AngleAxis(barrelRotation, Vector3.forward);
@@ -116,4 +124,13 @@ public class Player : MonoBehaviour
             transform.Rotate(0, -rotationspeed * Time.deltaTime, 0);
         }*/
     }
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            _currentHealth -= 1;
+        }
+    }*/
+    
+
 }
