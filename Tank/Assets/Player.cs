@@ -43,7 +43,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         Mov_Input = new Vector3(Input.GetAxis("Vertical"), 0f);
-        
+        _healthbar.UpdateHealth(_maxHealth, _currentHealth);
+
         //Old movement system
         /*
         if (Input.GetKey("d") && gameObject.tag == "Player")
@@ -96,7 +97,7 @@ public class Player : MonoBehaviour
             barrelRotation -= rotationspeed * Time.deltaTime;
             //Gun.Rotate(-rotationspeed * 0, 0, Time.deltaTime);
         }
-        if(Input.GetKeyDown("l"))
+        if (Input.GetKey("l"))
         {
             _currentHealth -= 1;
         }
@@ -112,25 +113,14 @@ public class Player : MonoBehaviour
         rigidBody.velocity = new Vector3(MoveVector.x, rigidBody.velocity.y, MoveVector.z);
 
     }
-    private void Player_rotate()
-    {
-       /*
-        if (Input.GetKey("d") && gameObject.tag == "Player")
-        {
-            transform.rotation = (0, rotationspeed * Time.deltaTime, 0);
-        }
-        if (Input.GetKey("a") && gameObject.tag == "Player")
-        {
-            transform.Rotate(0, -rotationspeed * Time.deltaTime, 0);
-        }*/
-    }
-    /*private void OnCollisionEnter(Collision collision)
+
+    private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Bullet")
         {
             _currentHealth -= 1;
         }
-    }*/
+    }
     
 
 }
