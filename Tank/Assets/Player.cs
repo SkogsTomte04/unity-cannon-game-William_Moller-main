@@ -4,36 +4,38 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth = 3;
-    private float _currentHealth;
+    // Health variables
+    [SerializeField] private Health healthBar;
+    [SerializeField] private float maxHealth = 3;
+    private float currentHealth;
 
-    [SerializeField] private Health _healthbar;
-    public Transform Gun;
-    public GameObject bulletprefab;
-    public float rotationspeed;
-    public float maxrotation;
-    public float minrotation;
-    public float movspeed;
-    public float bulletvel;
-    public float Damage;
-    private Vector3 Mov_Input;
+    // Shooting variables
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private float bulletVelocity;
+    [SerializeField] private float damage;
 
-    public Transform gun;
-    public Transform barrel;
-    public Camera playerCamera;
+    // Movement variables
+    [SerializeField] private float moveSpeed;
+    private Vector3 moveInput;
 
-    float barrelRotation = 0;
+    // Turret and barrel rotation variables
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float maxRotation;
+    [SerializeField] private float minRotation;
+    [SerializeField] private Transform barrel;
+    [SerializeField] private Transform turret;
+    private float barrelRotation = 0;
+    
+    Rigidbody rigidbody;
 
-    Rigidbody rigidBody;
-    // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(_healthbar);
-        rigidBody = GetComponent<Rigidbody>();
+        Debug.Log(healthBar);
+        rigidbody = GetComponent<Rigidbody>();
         
-        _currentHealth = 1;
+        currentHealth = maxHealth;
 
-        _healthbar.UpdateHealth(_maxHealth, _currentHealth);
+        healthBar.UpdateHealth(maxHealth, currentHealth);
     }
     Vector3 force(float bulletSpeed)
     {
@@ -42,85 +44,57 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        Mov_Input = new Vector3(Input.GetAxis("Vertical"), 0f);
-        _healthbar.UpdateHealth(_maxHealth, _currentHealth);
+        healthBar.UpdateHealth(maxHealth, currentHealth);
+        
+        HandleInput();
+        PlayerMoveAndRotate();
+    }
 
-        //Old movement system
-        /*
-        if (Input.GetKey("d") && gameObject.tag == "Player")
-        {
-            transform.Rotate(0, rotationspeed * Time.deltaTime, 0);
-        }
-        if (Input.GetKey("a") && gameObject.tag == "Player")
-        {
-            transform.Rotate(0, -rotationspeed * Time.deltaTime, 0);
-        }
-        if (Input.GetKey("w") && gameObject.tag == "Player")
-        {
-            GetComponent<Rigidbody>().AddForce(transform.forward * -movspeed);
-        }
-        if (Input.GetKey("s") && gameObject.tag == "Player")
-        {
-            GetComponent<Rigidbody>().AddForce(transform.forward * movspeed);
-        }
-        if (Input.GetKey("q"))
-        {
-            Gun.Rotate(rotationspeed * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKey("e"))
-        {
-            Gun.Rotate(-rotationspeed * Time.deltaTime, 0, 0);
-        }*/
-
-        //Debug.Log(gun.localRotation.eulerAngles);
+    private void HandleInput()
+    {
+        moveInput = new Vector3(Input.GetAxis("Vertical"), 0f);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject bullet = Instantiate<GameObject>(bulletprefab, barrel.position, barrel.rotation);
+            GameObject bullet = Instantiate<GameObject>(bulletPrefab, barrel.position, barrel.rotation);
             bullet.transform.localRotation = barrel.rotation;
-            bullet.GetComponent<Rigidbody>().AddForce(force(bulletvel), ForceMode.Impulse);
+            bullet.GetComponent<Rigidbody>().AddForce(force(bulletVelocity), ForceMode.Impulse);
         }
         if (Input.GetKey("d") && gameObject.tag == "Player")
         {
-            transform.Rotate(0, rotationspeed * Time.deltaTime, 0);
+            transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
         }
         if (Input.GetKey("a") && gameObject.tag == "Player")
         {
-            transform.Rotate(0, -rotationspeed * Time.deltaTime, 0);
+            transform.Rotate(0, -rotationSpeed * Time.deltaTime, 0);
         }
         if (Input.GetKey("q"))
         {
-            barrelRotation += rotationspeed * Time.deltaTime;
-            //Gun.Rotate(rotationspeed * 0, 0, Time.deltaTime);
+            barrelRotation += rotationSpeed * Time.deltaTime;
         }
         if (Input.GetKey("e"))
         {
-            barrelRotation -= rotationspeed * Time.deltaTime;
-            //Gun.Rotate(-rotationspeed * 0, 0, Time.deltaTime);
+            barrelRotation -= rotationSpeed * Time.deltaTime;
         }
         if (Input.GetKey("l"))
         {
-            _currentHealth -= 1;
+            currentHealth -= 1;
         }
-
-        barrelRotation = Mathf.Clamp(barrelRotation, minrotation, maxrotation);
-        Gun.localRotation = Quaternion.AngleAxis(barrelRotation, Vector3.forward);
-        Player_Move();
-
     }
-    private void Player_Move()
-    {
-        Vector3 MoveVector = transform.TransformDirection(Mov_Input) * -movspeed;
-        rigidBody.velocity = new Vector3(MoveVector.x, rigidBody.velocity.y, MoveVector.z);
 
+    private void PlayerMoveAndRotate()
+    {
+        barrelRotation = Mathf.Clamp(barrelRotation, minRotation, maxRotation);
+        turret.localRotation = Quaternion.AngleAxis(barrelRotation, Vector3.forward);
+
+        Vector3 moveVector = transform.TransformDirection(moveInput) * -moveSpeed;
+        rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Bullet")
         {
-            _currentHealth -= 1;
+            currentHealth -= 1;
         }
     }
-    
-
 }
