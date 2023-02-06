@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtExplisionParticle;
