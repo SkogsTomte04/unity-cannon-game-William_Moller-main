@@ -804,7 +804,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &778709026
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &900417599
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a03866ffdaef5748a08fe57dd9eb569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthbarSprite: {fileID: 1158873827}
+  healthbarSprite: {fileID: 1158873827}
 --- !u!114 &1109570940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1158873828
@@ -1474,19 +1474,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea6e47d1a933c146b7fea3986e0756e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
-  _healthbar: {fileID: 2142498666}
-  Gun: {fileID: 1003152834}
-  bulletprefab: {fileID: 305661042469220938, guid: f36fb0aa6752a88488faa8a186992063, type: 3}
-  rotationspeed: 100
-  maxrotation: -60
-  minrotation: -120
-  movspeed: -5
-  bulletvel: 20
-  Damage: 1
-  gun: {fileID: 1003152834}
+  healthBar: {fileID: 2142498666}
+  maxHealth: 3
+  bulletPrefab: {fileID: 305661042469220938, guid: f36fb0aa6752a88488faa8a186992063, type: 3}
+  bulletVelocity: 30
+  damage: 1
+  moveSpeed: -5
+  rotationSpeed: 70
+  maxRotation: 280
+  minRotation: 250
   barrel: {fileID: 417272489}
+  turret: {fileID: 1003152834}
   playerCamera: {fileID: 1036981528}
+  rigidbody: {fileID: 0}
 --- !u!54 &1330600466
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1502,7 +1502,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1330600467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1693,19 +1693,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea6e47d1a933c146b7fea3986e0756e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
-  _healthbar: {fileID: 1109570939}
-  Gun: {fileID: 2101617737}
-  bulletprefab: {fileID: 305661042469220938, guid: f36fb0aa6752a88488faa8a186992063, type: 3}
-  rotationspeed: 100
-  maxrotation: -60
-  minrotation: -120
-  movspeed: -5
-  bulletvel: 20
-  Damage: 1
-  gun: {fileID: 2101617737}
+  healthBar: {fileID: 1109570939}
+  maxHealth: 3
+  bulletPrefab: {fileID: 305661042469220938, guid: f36fb0aa6752a88488faa8a186992063, type: 3}
+  bulletVelocity: 30
+  damage: 1
+  moveSpeed: -5
+  rotationSpeed: 70
+  maxRotation: 280
+  minRotation: 250
   barrel: {fileID: 1691477337}
+  turret: {fileID: 2101617737}
   playerCamera: {fileID: 1755184286}
+  rigidbody: {fileID: 0}
 --- !u!54 &1356548779
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1721,7 +1721,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1356548780
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a03866ffdaef5748a08fe57dd9eb569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthbarSprite: {fileID: 900417598}
+  healthbarSprite: {fileID: 900417598}
 --- !u!114 &1752318053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2296,19 +2296,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea6e47d1a933c146b7fea3986e0756e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
-  _healthbar: {fileID: 1752318052}
-  Gun: {fileID: 1192498458}
-  bulletprefab: {fileID: 305661042469220938, guid: f36fb0aa6752a88488faa8a186992063, type: 3}
-  rotationspeed: 100
-  maxrotation: -60
-  minrotation: -120
-  movspeed: -5
-  bulletvel: 20
-  Damage: 1
-  gun: {fileID: 1192498458}
+  healthBar: {fileID: 1752318052}
+  maxHealth: 3
+  bulletPrefab: {fileID: 305661042469220938, guid: f36fb0aa6752a88488faa8a186992063, type: 3}
+  bulletVelocity: 30
+  damage: 1
+  moveSpeed: -5
+  rotationSpeed: 70
+  maxRotation: 280
+  minRotation: 250
   barrel: {fileID: 464393281}
+  turret: {fileID: 1192498458}
   playerCamera: {fileID: 1891554347}
+  rigidbody: {fileID: 0}
 --- !u!54 &2000729933
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2324,7 +2324,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &2000729934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2696,4 +2696,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a03866ffdaef5748a08fe57dd9eb569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthbarSprite: {fileID: 778709025}
+  healthbarSprite: {fileID: 778709025}

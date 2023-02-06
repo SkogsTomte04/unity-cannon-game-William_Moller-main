@@ -128,5 +128,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be10241652708d24f99ae67e39bb91c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BOOM: {fileID: 5095579633871615661, guid: fe0eae128735c42499ca4988379f4195, type: 3}
-  Dirt_BOOM: {fileID: 5095579633871615661, guid: 007ee0ad97f642547855ec8c29ee7de1, type: 3}
+  explosionParticle: {fileID: 5095579633871615661, guid: fe0eae128735c42499ca4988379f4195, type: 3}
+  dirtExplisionParticle: {fileID: 5095579633871615661, guid: 007ee0ad97f642547855ec8c29ee7de1, type: 3}
