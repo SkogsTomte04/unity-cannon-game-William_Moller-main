@@ -5,23 +5,18 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private Image _healthbarSprite;
+    [SerializeField] private Image healthbarSprite;
 
-    void Start()
-    {
-
-    }
     public void UpdateHealth(float maxHealth, float currentHealth)
     {
-        _healthbarSprite.fillAmount = currentHealth / maxHealth;
+        healthbarSprite.fillAmount = currentHealth / maxHealth;
     }
 
     void Update()
     {
-        if(Camera.current !=null)
+        if(Camera.current != null)
         {
             transform.rotation = Quaternion.LookRotation(transform.position - Camera.current.transform.position);
         }
-        
     }
 }
