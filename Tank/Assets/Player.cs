@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform barrel;
     [SerializeField] private Transform turret;
     private float barrelRotation = 0;
-    
+
+    public Camera playerCamera;    
     Rigidbody rigidbody;
 
     void Start()
