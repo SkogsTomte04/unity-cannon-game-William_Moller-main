@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         healthBar.UpdateHealth(maxHealth, currentHealth);
+
         
         HandleInput();
         PlayerMoveAndRotate();
@@ -75,10 +76,6 @@ public class Player : MonoBehaviour
         if (Input.GetKey("e"))
         {
             barrelRotation -= rotationSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey("l"))
-        {
-            currentHealth -= 1;
         }
     }
 
