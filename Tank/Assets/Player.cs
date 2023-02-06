@@ -5,9 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Health variables
-    [SerializeField] private Health healthBar;
-    [SerializeField] private float maxHealth = 3;
-    private float currentHealth;
+    [SerializeField] public Health healthBar;
+    [SerializeField] public float maxHealth = 3;
+    public float currentHealth;
 
     // Shooting variables
     [SerializeField] private GameObject bulletPrefab;
