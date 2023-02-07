@@ -46,9 +46,14 @@ public class GameManager : MonoBehaviour
         {
             player.healthBar.UpdateHealth(player.maxHealth, player.currentHealth);
             
-            if (player.currentHealth <= 0)
+            
+            if(player != null)
             {
-                Destroy(player.gameObject);
+                if (player.currentHealth <= 0)
+                {
+                    Destroy(player.gameObject);
+                    players.AddRange(FindObjectsOfType<Player>());
+                }
             }
         }
     }
