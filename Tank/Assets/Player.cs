@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform turret;
     private float barrelRotation = 0;
 
-    public Camera playerCamera;    
-    Rigidbody rigidbody;
+    public Camera playerCamera;
+    new Rigidbody rigidbody;
 
     void Start()
     {
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     {
         healthBar.UpdateHealth(maxHealth, currentHealth);
 
-        
+        CheckifAlive();
         HandleInput();
         PlayerMoveAndRotate();
     }
@@ -93,6 +93,13 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             currentHealth -= 1;
+        }
+    }
+    void CheckifAlive()
+    {
+        if(currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

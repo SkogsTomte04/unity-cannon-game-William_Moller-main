@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         foreach (Player player in players)
         {
             player.healthBar.UpdateHealth(player.maxHealth, player.currentHealth);
+            
+            if (player.currentHealth <= 0)
+            {
+                Destroy(player.gameObject);
+            }
         }
     }
 }
