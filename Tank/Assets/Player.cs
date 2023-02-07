@@ -45,9 +45,6 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        healthBar.UpdateHealth(maxHealth, currentHealth);
-
-        CheckifAlive();
         HandleInput();
         PlayerMoveAndRotate();
     }
@@ -93,13 +90,6 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             currentHealth -= 1;
-        }
-    }
-    void CheckifAlive()
-    {
-        if(currentHealth <= 0)
-        {
-            Destroy(this.gameObject);
         }
     }
 }
