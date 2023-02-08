@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
                 if (player.currentHealth <= 0)
                 {
                     Destroy(player.gameObject);
-                    players.AddRange(FindObjectsOfType<Player>());
+                    players.Remove(player);
                 }
             }
         }
